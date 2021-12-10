@@ -20,11 +20,29 @@ if( APPLE )
 endif()
 find_package(PkgConfig REQUIRED)
 
-aux_source_directory(. play_src)
-set(DIR_SRCS ${play_src})
+set(play_src ${play_src})
+list(APPEND play_src
+  byteutils.c
+  crypto.c
+  dnssd.c
+  fairplay_playfair.c
+  http_request.c
+  http_response.c
+  httpd.c
+  logger.c
+  mirror_buffer.c
+  netutils.c
+  pairing.c
+  raop_buffer.c
+  raop_ntp.c
+  raop_rtp_mirror.c
+  raop_rtp.c
+  raop.c
+  utils.c
+)
 
 add_library( airplay  STATIC
-             ${DIR_SRCS}
+             ${play_src}
            )
 
 if ( APPLE )
